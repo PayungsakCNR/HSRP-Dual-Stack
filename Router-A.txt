@@ -1,0 +1,27 @@
+track 1 interface GigabitEthernet0/0/0 line-protocol
+
+interface Vlan144
+ description HSRPv6-LAB-V144-A
+ bandwidth 1000000
+ vrf forwarding PCLONET-CORE
+ ip address 10.200.144.11 255.255.255.0
+ no ip redirects
+ no ip unreachables
+ no ip proxy-arp
+ standby version 2
+ standby 1 ipv6 2401:93E0:5:144::1/64
+ standby 1 timers 5 10
+ standby 1 priority 200
+ standby 1 preempt
+ standby 1 authentication paocloud
+ standby 1 track 1 decrement 50
+ standby 2 ip 10.200.144.1
+ standby 2 timers 5 10
+ standby 2 priority 200
+ standby 2 preempt
+ standby 2 authentication paocloud
+ standby 2 track 1 decrement 50
+ ipv6 address FE80::144:A link-local
+ ipv6 address 2401:93E0:5:144::A/64
+ ipv6 enable
+end
